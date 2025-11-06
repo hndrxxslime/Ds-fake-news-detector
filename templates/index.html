@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Fake News Detection</h1>
+<p>Enter a news article or statement below to test if it's real or fake.</p>
+
+<form action="/predict" method="POST">
+  <textarea name="text" placeholder="Enter text here..."></textarea>
+  <br>
+  <button type="submit">Analyze</button>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ title or "Fake News Detection" }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>
+        <img
+          src="{{ url_for('static', filename='logo.png') }}"
+          alt="Logo"
+          class="logo"
+        />
+        Fake News Detector
+      </h2>
+
+      <ul>
+        <li><a href="/">Predict News</a></li>
+        <li><a href="/model">Model Info</a></li>
+        <li><a href="/about">About Project</a></li>
+      </ul>
+    </div>
+
+    <div class="main-content">{% block content %}{% endblock %}</div>
+  </body>
+</html>

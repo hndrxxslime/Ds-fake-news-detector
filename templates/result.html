@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Fake News Detection Result</h1>
+<p><strong>Prediction:</strong> {{ prediction }}</p>
+<p><strong>Confidence:</strong> {{ confidence }}%</p>
+
+<h3>Input Text:</h3>
+<p>{{ text }}</p>
+
+<h3>Explanation (LIME):</h3>
+<div>{{ explanation|safe }}</div>
+
+<a href="/">🔄 Try Another</a>
+{% endblock %}

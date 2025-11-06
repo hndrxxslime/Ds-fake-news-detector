@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>About the Model</h1>
+<p>This Fake News Detection model was trained using:</p>
+<ul>
+  <li>Dataset: Kaggle Fake News Dataset</li>
+  <li>Algorithm: PassiveAggressiveClassifier</li>
+  <li>Vectorization: TF-IDF</li>
+</ul>
+<p>The model predicts whether a given text is "FAKE" or "REAL" based on word usage patterns and content similarity.</p>
+{% endblock %}
