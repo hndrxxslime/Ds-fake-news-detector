@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ title }} - Fake News Detector</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/analysis.css') }}"
+    />
+  </head>
+  <body>
+    <div class="analysis-container">
+      {% if no_data %}
+      <div class="no-data">
+        <h1 class="analysis-title">Advanced Data Analysis</h1>
+        <p>No predictions yet. Make some predictions to see analytics!</p>
+        <a href="/">Start Detecting</a>
+      </div>
+      {% else %}
+      <h1 class="analysis-title">Advanced Data Analysis</h1>
+
+      <div class="analysis-grid">
+        <!-- Predictions Over Time -->
+        <div class="analysis-card">
+          <h3>Predictions Over Time</h3>
+          <div class="plotly-wrapper">{{ plot1 | safe }}</div>
+        </div>
+
+        <!-- REAL vs FAKE -->
+        <div class="analysis-card img-card">
+          <h3>REAL vs FAKE Distribution</h3>
+          <img src="data:image/png;base64,{{ pie_img }}" alt="Pie Chart" />
+        </div>
+
+        <!-- Confidence by Model -->
+        <div class="analysis-card img-card">
+          <h3>Confidence Distribution by Model</h3>
+          <img src="data:image/png;base64,{{ violin_img }}" alt="Violin Plot" />
+        </div>
+
+        <!-- Model Usage -->
+        <div class="analysis-card">
+          <h3>Model Usage Over Time</h3>
+          <div class="plotly-wrapper">{{ plot2 | safe }}</div>
+        </div>
+
+        <!-- Word Cloud -->
+        <div class="analysis-card full-width-card">
+          <h3>Top Words in FAKE News</h3>
+          <div class="plotly-wrapper">{{ plot3 | safe }}</div>
+        </div>
+
+        <!-- Accuracy Trend -->
+        <div class="analysis-card full-width-card">
+          <h3>Model Accuracy Trend</h3>
+          <div class="plotly-wrapper">{{ plot4 | safe }}</div>
+        </div>
+      </div>
+
+      <div class="analysis-back">
+        <a href="/">Back to Detector</a> |
+        <a href="/history">View History</a>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
+
+{% endblock %}

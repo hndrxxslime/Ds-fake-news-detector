@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+<div class="histo_container">
+  <h1>Prediction History</h1>
+  <p class="subtitle">Last 50 predictions</p>
+
+  <div class="history-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Text</th>
+          <th>Prediction</th>
+          <th>Confidence</th>
+          <th>Model</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td>
+            {% set diff = now - r.timestamp %} {% set total_seconds =
+            diff.total_seconds() %} {% set minutes_ago = (total_seconds // 60)
+            %} {% if minutes_ago < 1 %} just now {% elif minutes_ago < 60 %} {{
+            minutes_ago }} min ago {% elif minutes_ago < 1440 %} {% set hours =
+            minutes_ago // 60 %} {% set mins = minutes_ago % 60 %} {{ hours
+            }}h{% if mins > 0 %} {{ mins }}m{% endif %} ago {% else %} {{
+            r.timestamp.strftime('%b %d') }} {% endif %}
+          </td>
+          <td class="text-col">
+            {{ r.text[:90] }}{% if r.text|length > 90 %}...{% endif %}
+          </td>
+          <td>
+            <span class="label-{{ 'fake' if r.label == 'FAKE' else 'real' }}">
+              {{ r.label }}
+            </span>
+          </td>
+          <td>{{ "%.2f"|format(r.confidence) }}%</td>
+          <td><span class="model">{{ r.model }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="back">
+    <a href="/">Back to Detector</a> |
+    <a href="/analysis">View Analytics</a>
+  </div>
+</div>
+{% endblock %}

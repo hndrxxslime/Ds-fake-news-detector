@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}{{ title }}{% endblock %} {% block
+content %}
+
+<h1>⚠ Content Warning</h1>
+
+<p style="background: #fff3cd; padding: 15px; border-left: 5px solid #ffcc00">
+  This system cannot analyze the submitted text because it appears to contain:
+</p>
+
+<ul>
+  <li>A political or personal claim</li>
+  <li>Reference to real individuals</li>
+  <li>Short claim-like structure</li>
+  <li>Sensitive content unsuitable for stylistic fake-news classification</li>
+</ul>
+
+<p>
+  Our fake news model detects <strong>linguistic patterns</strong> in articles;
+  it does not verify political statements, personal claims, or facts about real
+  people.
+</p>
+
+<h3>Your text:</h3>
+<p>{{ text }}</p>
+
+<a href="/">⬅ Go Back</a>
+
+{% endblock %}
