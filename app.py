@@ -211,6 +211,8 @@ def history():
                            title="History",
                            now=datetime.now(timezone.utc))  # ← FIXED: No deprecation
 
+
+
 @app.route('/analysis')
 def analysis():
     records = session.query(Prediction).order_by(Prediction.timestamp).all()
@@ -324,6 +326,8 @@ def analysis():
                            plot1=plot1, plot2=plot2, plot3=plot3, plot4=plot4,
                            pie_img=pie_img, violin_img=violin_img,
                            no_data=False, title="Advanced Analytics")
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
